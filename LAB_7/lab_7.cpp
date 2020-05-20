@@ -4,10 +4,6 @@
 #include <cstdlib>
 using namespace std;
 
-
-
-
-
 class Node{
 public:
 
@@ -78,7 +74,23 @@ public:
         cout<<endl;
     }
     }
+    void findkey(int key){
+     for ( int i = 0; i < SIZE; i++ )
+    {
+        Node* temp = data[i];
+
+        while (temp!=NULL)
+        {
+            if(temp->value==key){ cout << temp->getKey()<<" ";}
+            temp = temp->getNext();
+
+        }
+        cout<<endl;
+    }
+    }
+
 };
+
 
 const int sizearr=30;
 
@@ -87,9 +99,9 @@ int main()
     srand ( time(0) );
     hashTable theChain;
     int arr[sizearr]  ;
-    
+
     for (int i=0; i<sizearr; i++)
-    arr[i] = rand() % 100;   
+    arr[i] = rand() % 100;
 
     for ( int i = 0; i < sizearr; i++ )
     {
@@ -98,7 +110,8 @@ int main()
 
     }
     theChain.printTable();
-
+    cout<<endl;
+    theChain.findkey(44);
     getch();
     return 0;
 }
