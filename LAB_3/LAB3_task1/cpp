@@ -1,0 +1,52 @@
+#include <iostream>
+
+using namespace std;
+
+
+void findmax(int* mas, int n) {
+    int ans = mas[0],
+        l = 0,
+        r = 0,
+        sum = 0,
+        min_sum = 0,
+        L_min = -1;
+
+    for (int i = 0; i < n; ++i) {
+        sum += mas[i];
+
+        int current = sum - min_sum;
+
+        if (current > ans) {
+            ans = current;
+            l = L_min + 1;
+            r = i;
+        }
+
+        if (sum < min_sum) {
+            min_sum = sum;
+            L_min = i;
+        }
+    }
+
+    cout << "Answer " << ans <<" First day: "<< l <<" Second day: " << r+1;
+}
+
+int main()
+{
+    cout << "How much days do you need to enter?" << endl;
+
+    int n;
+    cin >> n;
+    int* array = new int[n];
+
+    for (int i = 0; i < n; ++i) {
+        cin >> array[i];
+    }
+
+    int* array2 = new int[n - 1];
+    for (int i = 0; i < n - 1; ++i) {
+        array2[i] = array[i+1] - array[i];
+    }
+    findmax(array2,n-1);
+    return 0;
+}
